@@ -41,6 +41,12 @@ body {
   font-size: 2em;
   cursor: pointer;
 }
+.modal__fb i {
+  color: #4267b2;
+  font-size: 2em;
+  cursor: pointer;
+  margin: 0 10px;
+}
 .modal__title {
   font-size: 2em;
   font-weight: 700;

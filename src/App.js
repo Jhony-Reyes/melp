@@ -1,5 +1,4 @@
 import Component from "inferno-component";
-import "./registerServiceWorker";
 // Import modules
 import axios from "axios";
 import _ from "lodash";
@@ -36,34 +35,63 @@ class App extends Component {
       .catch(error => {
         console.log(error);
       });
+    window.fbAsyncInit = function() {
+      window.FB.init({
+        appId: "853378561536928",
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: "v2.11"
+      });
+    };
+
+    (function(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+
+    this.shareFacebok = () => {
+      let description = `Restaurant: ${this.state.name}; visit your website ${this.state.site}`;
+      window.FB.ui(
+        {
+          method: "share",
+          quote: description,
+          mobile_iframe: true,
+          href: "https://jhony-reyes.github.io/melp/"
+        },
+        function(response) {}
+      );
+    };
   }
   orderAsc() {
     this.setState({
       data: _.orderBy(this.state.data, ["rating"], ["asc"]),
       asc: true
     });
-    console.log(this.state.desc);
   }
   orderDesc() {
     this.setState({
       data: _.orderBy(this.state.data, ["rating"], ["desc"]),
       desc: true
     });
-    console.log(this.state.asc);
   }
   alphaAsc() {
     this.setState({
       data: _.orderBy(this.state.data, ["name"], ["asc"]),
       alphaa: true
     });
-    console.log(this.state.desc);
   }
   alphaDesc() {
     this.setState({
       data: _.orderBy(this.state.data, ["name"], ["desc"]),
       alphad: true
     });
-    console.log(this.state.asc);
   }
   handleClick(site, name) {
     let description = `Restaurant: ${name}; visit your website ${site}`;
@@ -232,7 +260,8 @@ class App extends Component {
                                 value.contact.site,
                                 value.name,
                                 e
-                              )}
+                              )
+                            }
                             className="table__fb"
                           >
                             <i
@@ -263,15 +292,21 @@ class App extends Component {
               </h2>
               <br />
               <div style="text-align:center">
-                <iframe
-                  src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fjhony-reyes.github.io%2Fmelp%2F&width=143&layout=button&action=like&size=small&show_faces=false&share=true&height=65&appId"
-                  width="143"
-                  height="25"
-                  style="border:none;overflow:hidden"
-                  scrolling="no"
-                  frameborder="0"
-                  allowTransparency="true"
-                />
+                <div onClick={this.shareFacebok}>
+                  <span className="modal__fb">
+                    {" "}
+                    <div
+                      style="display: inline-block;"
+                      data-href="https://jhony-reyes.github.io/melp/"
+                      data-layout="button"
+                      data-action="like"
+                      data-show-faces="true"
+                    >
+                      <i class="fa fa-thumbs-o-up" aria-hidden="true" />
+                    </div>
+                    <i class="fa fa-share-square-o" aria-hidden="true" />
+                  </span>
+                </div>
               </div>
             </ModalDialog>
           </ModalContainer>
