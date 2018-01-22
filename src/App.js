@@ -37,7 +37,7 @@ class App extends Component {
       });
     window.fbAsyncInit = function() {
       window.FB.init({
-        appId: "853378561536928",
+        appId: "1478026538951991",
         autoLogAppEvents: true,
         xfbml: true,
         version: "v2.11"
@@ -57,7 +57,9 @@ class App extends Component {
     })(document, "script", "facebook-jssdk");
 
     this.shareFacebok = () => {
-      let description = `Restaurant: ${this.state.name}; visit your website ${this.state.site}`;
+      let description = `Restaurant: ${this.state.name}; visit your website ${
+        this.state.site
+      }`;
       window.FB.ui(
         {
           method: "share",
@@ -295,7 +297,7 @@ class App extends Component {
                 <div onClick={this.shareFacebok}>
                   <span className="modal__fb">
                     {" "}
-                    <div
+                    {/*<div
                       style="display: inline-block;"
                       data-href="https://jhony-reyes.github.io/melp/"
                       data-layout="button"
@@ -304,7 +306,16 @@ class App extends Component {
                     >
                       <i class="fa fa-thumbs-o-up" aria-hidden="true" />
                     </div>
-                    <i class="fa fa-share-square-o" aria-hidden="true" />
+                    <i class="fa fa-share-square-o" aria-hidden="true" />*/}
+                    <iframe
+                      src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fjhony-reyes.github.io%2Fmelp%2F&width=143&layout=button&action=like&size=small&show_faces=false&share=true&height=65&appId=1478026538951991"
+                      width="143"
+                      height="65"
+                      style="border:none;overflow:hidden"
+                      scrolling="no"
+                      frameborder="0"
+                      allowTransparency="true"
+                    />
                   </span>
                 </div>
               </div>
