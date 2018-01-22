@@ -5,9 +5,11 @@
   "dependencies": {
     "axios": "^0.17.1",
     "inferno": "^3.10.1",
+    "inferno-compat": "^3.10.1",
     "inferno-component": "^3.10.1",
     "inferno-scripts": "5.0.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "react-modal-dialog": "^4.0.7"
   },
   "scripts": {
     "start": "inferno-scripts start",
